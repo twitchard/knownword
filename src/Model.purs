@@ -13,7 +13,7 @@ model =
 
 americanEnglish :: LanguageModel
 americanEnglish =
-  { invocationName: "purescript template"
+  { invocationName: "known word"
   , intents:
       [ { name: "AMAZON.CancelIntent" , samples: [] , slots : [] }
       , { name: "AMAZON.HelpIntent" , samples: [] , slots : [] }
@@ -23,6 +23,7 @@ americanEnglish =
       , { name: "IncrementIntent"
         , samples: [ "Increment the counter"
                    , "Increment it"
+                   , "Increment the counter by {Num}"
                    , "Increment it by {Num}"
                    , "Increment"
                    , "Go up"
