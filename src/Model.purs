@@ -18,32 +18,58 @@ americanEnglish =
       [ { name: "AMAZON.CancelIntent" , samples: [] , slots : [] }
       , { name: "AMAZON.HelpIntent" , samples: [] , slots : [] }
       , { name: "AMAZON.StopIntent" , samples: [] , slots : [] }
-      , { name: "AMAZON.YesIntent" , samples: [] , slots : [] }
-      , { name: "AMAZON.NoIntent" , samples: [] , slots : [] }
-      , { name: "IncrementIntent"
-        , samples: [ "Increment the counter"
-                   , "Increment it"
-                   , "Increment the counter by {Num}"
-                   , "Increment it by {Num}"
-                   , "Increment"
-                   , "Go up"
-                   , "Go up by {Num}"
-                   , "Add {Num}"
-                   , "Plus {Num}"
+      , { name: "ReadyIntent"
+        , samples: [ "I'm ready"
+                   , "Ready"
+                   , "Let's go"
+                   , "I've got my word"
+                   , "Start"
+                   , "Begin"
+                   , "Start playing"
+                   , "Let's play"
+                   , "Go ahead and guess"
+                   , "Start guessing"
                    ]
-        , slots : [ { "name": "Num"
-                    , "type": "AMAZON.NUMBER"
-                    }
-                  ]
+        , slots : []
         }
-      , { name: "DecrementIntent"
-        , samples: [ "Decrement the counter"
-                   , "Decrement it"
-                   , "Decrement"
-                   , "Go down"
-                   , "Go down by {Num}"
-                   , "Subtract {Num}"
-                   , "Minus {Num}"
+      , { name: "NoopIntent"
+        , samples: [ "I'm not ready"
+                   , "Not ready"
+                   , "Not yet"
+                   , "Hold on"
+                   , "Hold up"
+                   , "Hold your horses"
+                   , "Wait up"
+                   , "Just a second"
+                   , "Just a minute"
+                   , "Patience"
+                   , "I'm thinking"
+                   ]
+        , slots : []
+        }
+      , { name: "CorrectGuessIntent"
+        , samples: [ "You got it"
+                   , "That's it"
+                   , "You got my word"
+                   , "You guessed it"
+                   , "You guessed my word"
+                   , "Good job"
+                   , "You win"
+                   , "Congratulations. You win"
+                   , "That's correct"
+                   , "That's right"
+                   , "You are correct"
+                   , "You got it right"
+                   , "You did it"
+                   , "You're right"
+                   , "Yes that's it"
+                   ]
+        , slots : []
+        }
+      , { name: "NumberIntent"
+        , samples: [ "{Num}"
+                   , "{Num} letters"
+                   , "It has {Num} letters in common"
                    ]
         , slots : [ { "name": "Num"
                     , "type": "AMAZON.NUMBER"
