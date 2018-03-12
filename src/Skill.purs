@@ -92,5 +92,21 @@ handle event _ = do
 runSkill :: ∀ e. Input → Session → Aff e (Output)
 runSkill = run
   where
+    run Start _ = greet
+
     run _ _ = noop
-    noop = pure { session : Just Unstarted, speech: "Talk to the hand, the face isn't listening", reprompt : Nothing }
+
+    greet = pure
+      { session : Just Unstarted
+      , speech: "Yay! I love this game. " <>
+                "Ok, pick a 5-letter word for me to guess. " <>
+                "Say \"I'm ready\" when you're ready for me to start guessing."
+      , reprompt : Just $ "Say, \"I'm ready\" when you're ready for me to start guessing. " <>
+                   "If you need more time to think, say \"I'm not ready\"."
+      }
+
+    noop = pure
+      { session : Nothing
+      , speech: "Talk to the hand, the face isn't listening"
+      , reprompt : Nothing
+      }
