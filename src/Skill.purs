@@ -59,6 +59,7 @@ readIntent intentName slots =
     Nothing → readCustomIntent
     where
       readCustomIntent
+        | intentName == "ReadyIntent" = Ready
         | otherwise = ErrorInput $ "Unrecognized intent: " <> intentName
       number = case runExcept (read slots) of
         Right (r :: {"Num" :: { value :: String } }) → case fromString r."Num".value of
@@ -94,6 +95,10 @@ runSkill = run
   where
     run Start _ = greet
 
+    run Ready Nothing = firstGuess
+    run Ready (Just Unstarted) = firstGuess
+    run Ready sess@(Just (Guessed _)) = tryAgain sess
+
     run _ _ = noop
 
     greet = pure
@@ -103,6 +108,18 @@ runSkill = run
                 "Say \"I'm ready\" when you're ready for me to start guessing."
       , reprompt : Just $ "Say, \"I'm ready\" when you're ready for me to start guessing. " <>
                    "If you need more time to think, say \"I'm not ready\"."
+      }
+
+    firstGuess = pure $
+      { session : Just $ Guessed { guess : "quack", prevGuesses : [] }
+      , speech : "My guess is quack"
+      , reprompt : Just $ "My guess is quack. Please say how many letters in quack are in your secret word"
+      }
+
+    tryAgain sess = pure $
+      { session: sess
+      , speech : "Sorry, I didn't understand. Please try again."
+      , reprompt : Just $ "Sorry, I didn't understand. Please try again." 
       }
 
     noop = pure
